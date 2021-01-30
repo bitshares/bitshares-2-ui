@@ -283,7 +283,16 @@ export function getFeaturedMarkets(quotes = []) {
         ["BTS", "RUDEX.PZM"],
         ["BTS", "XBTSX.STH"],
         ["BTS", "XBTSX.WAVES"],
-        ["BTS", "HERTZ"]
+        ["BTS", "HERTZ"],
+        ["EVRAZ", "BTS"],
+        ["EVRAZ", "RUBLE"],
+        ["EVRAZ", "EUR"],
+        ["EVRAZ", "CNY"],
+        ["EVRAZ", "HONEST.USD"],
+        ["EVRAZ", "RUDEX.BTC"],
+        ["EVRAZ", "XBTSX.BTC"],
+        ["EVRAZ", "XBTSX.STH"],
+        ["EVRAZ", "CRUDE.NGN"]
     ].filter(a => {
         if (!quotes.length) return true;
         return quotes.indexOf(a[0]) !== -1;
