@@ -20,16 +20,16 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
             - run: npm ci
-            - run: npm run build
+            - run: npm run build-hash
             - name: Create CNAME file
               uses: finnp/create-file-action@master
               env:
-                  FILE_NAME: build/dist/CNAME
+                  FILE_NAME: build/hash-history/CNAME
                   FILE_DATA: develop.bitshares.org
             - name: Deploy
               uses: s0/git-publish-subdir-action@master
               env:
                   REPO: git@github.com:bitshares/develop.bitshares.org.git
                   BRANCH: master
-                  FOLDER: build/dist
+                  FOLDER: build/hash-history
                   SSH_PRIVATE_KEY: ${{ secrets.AUTOMATION_UI_DEPLOYMENT_KEY }}
