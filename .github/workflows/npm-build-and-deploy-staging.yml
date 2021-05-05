@@ -1,0 +1,35 @@
+# This workflow will do a clean install of node dependencies, build the source code and push the binaries to the deployment repository.
+name: Continuous Delivery and Deployment
+
+on:
+    push:
+        branches: [staging]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [10.x]
+
+        steps:
+            - uses: actions/checkout@v2
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - run: npm ci
+            - run: npm run build-hash
+            - name: Create CNAME file
+              uses: finnp/create-file-action@master
+              env:
+                  FILE_NAME: build/hash-history/CNAME
+                  FILE_DATA: staging.bitshares.org
+            - name: Deploy
+              uses: s0/git-publish-subdir-action@master
+              env:
+                  REPO: git@github.com:bitshares/bitshares-ui-staging.git
+                  BRANCH: master
+                  FOLDER: build/hash-history
+                  SSH_PRIVATE_KEY: ${{ secrets.AUTOMATION_STAGING_DEPLOYMENT_KEY }}
