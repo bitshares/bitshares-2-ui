@@ -553,11 +553,11 @@
     "exchange": {
         "actions": "Actions",
         "add_quote": "Add",
-        "asks": "Sell orders",
+        "asks": "Sell",
         "atr": "Average True Range",
         "balance": "Balance",
         "base_supply": "Base supply",
-        "bids": "Buy orders",
+        "bids": "Buy",
         "borrow": "Borrow",
         "borrow_short": "Borrow",
         "buy": "Buy",
@@ -610,7 +610,7 @@
         "lowest_ask": "Lowest ask",
         "maintenance": "Maintenance Call Price",
         "market": "Market",
-        "market_depth": "Market Depth",
+        "market_depth": "Σ",
         "market_frozen": "The owner of %(asset)s has disabled trading in this market.",
         "market_name": "My Markets",
         "market_picker": {
