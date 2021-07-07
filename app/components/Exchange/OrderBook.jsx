@@ -965,6 +965,8 @@ class OrderBook extends React.Component {
                                 //)}
                             >
                                 <Translate content="exchange.asks" />
+                                {" "}
+                                <AssetName name={quoteSymbol} />
                                 {flipOrderBook &&
                                 !this.props.hideFunctionButtons ? (
                                     <div style={{display: "inline-block"}}>
@@ -1035,14 +1037,14 @@ class OrderBook extends React.Component {
                                     className="header-sub-title float-right"
                                 >
                                     <Translate content="exchange.market_depth" />
-                                    <span>: </span>
+                                    {" "}
                                     {utils.format_number(
                                         totalAsks,
                                         quote.get("precision")
                                     )}
                                     <span>
                                         {" "}
-                                        (<AssetName name={quoteSymbol} />)
+                                        <AssetName name={quoteSymbol} />
                                     </span>
                                 </div>
                             </div>
@@ -1112,6 +1114,8 @@ class OrderBook extends React.Component {
                                 //)}
                             >
                                 <Translate content="exchange.bids" />
+                                {" "}
+                                <AssetName name={quoteSymbol} />
                                 {!flipOrderBook &&
                                 !this.props.hideFunctionButtons ? (
                                     <div style={{display: "inline-block"}}>
@@ -1195,14 +1199,14 @@ class OrderBook extends React.Component {
                                     className="float-right header-sub-title"
                                 >
                                     <Translate content="exchange.market_depth" />
-                                    <span>: </span>
+                                    {" "}
                                     {utils.format_number(
                                         totalBids,
                                         base.get("precision")
                                     )}
                                     <span>
                                         {" "}
-                                        (<AssetName name={baseSymbol} />)
+                                        <AssetName name={baseSymbol} />
                                     </span>
                                 </div>
                             </div>
