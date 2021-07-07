@@ -335,7 +335,7 @@ class Exchange extends React.Component {
             buyDiff: false,
             sellDiff: false,
             autoScroll: ws.get("global_AutoScroll", true),
-            buySellTop: ws.get("buySellTop", true),
+            buySellTop: ws.get("buySellTop", false),
             buyFeeAssetIdx: ws.get("buyFeeAssetIdx", 0),
             sellFeeAssetIdx: ws.get("sellFeeAssetIdx", 0),
             verticalOrderBook: ws.get("verticalOrderBook", false),
@@ -345,7 +345,7 @@ class Exchange extends React.Component {
             singleColumnOrderForm: ws.get("singleColumnOrderForm", true),
             flipOrderBook: ws.get("flipOrderBook", false),
             flipBuySell: ws.get("flipBuySell", false),
-            orderBookReversed: ws.get("orderBookReversed", false),
+            orderBookReversed: ws.get("orderBookReversed", true),
             chartType: ws.get("chartType", "price_chart"),
             chartHeight: chart_height,
             chartZoom: ws.get("chartZoom", true),
@@ -361,12 +361,12 @@ class Exchange extends React.Component {
             panelTabs: ws.get("panelTabs", {
                 my_history: 1,
                 history: 1,
-                my_orders: 2,
+                my_orders: 1,
                 open_settlement: 2
             }),
             panelTabsActive: ws.get("panelTabsActive", {
                 1: "my_history",
-                2: "my_orders"
+                1: "my_orders"
             })
         };
     }
