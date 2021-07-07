@@ -5,8 +5,25 @@ $ant-fix: ':not([class*="ant-"])';
         label {
             text-transform: none;
             font-family: Roboto, sans-serif;
-            font-weight: 400;
+            font-weight: 600;
             display: inline;
+            position: relative !important;
+        }
+    }
+}
+
+.ant-form-item {
+    .ant-form-item-label {
+        .nontitle {
+            font-weight: 400;
+        }
+    }
+}
+
+.ant-form-item {
+    .ant-form-item-label {
+        a {
+                margin-right: 8px ;
         }
     }
 }
@@ -15,3 +32,24 @@ $ant-fix: ':not([class*="ant-"])';
     margin-left: 0;
     font-size: 14px;
 }
+
+.anticon-unlock, .anticon-lock  {
+  font-size: 26px !important;
+}
+
+.ant-slider-step {
+  background: rgba(255,255,255,0.2) !important;
+}
+
+.ant-modal-header {
+  margin-bottom: 0 !important ;
+  padding-bottom: 0 !important ;
+}
+
+.ant-modal-title {
+  font-size: 24px !important ;
+  line-height: 36px !important ;
+  margin-bottom: 0 !important ;
+  padding-bottom: 0 !important ;
+}
+
