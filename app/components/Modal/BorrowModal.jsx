@@ -82,7 +82,7 @@ class BorrowModalContent extends React.Component {
                 collateral_ratio: this._getInitialCollateralRatio(props),
                 target_collateral_ratio: this._getMaintenanceRatio(),
                 errors: this._getInitialErrors(),
-                useTargetCollateral: false,
+                useTargetCollateral: true,
                 original_position: {
                     debt: 0,
                     collateral: 0
@@ -223,9 +223,9 @@ class BorrowModalContent extends React.Component {
                   collateral_ratio: collateralRatio
               };
 
-        this.setState(newState);
-        this._validateFields(newState);
-        this._setUpdatedPosition(newState);
+                this.setState(newState);
+                this._validateFields(newState);
+                this._setUpdatedPosition(newState);
     }
 
     _onTargetRatioChange(e) {
@@ -287,7 +287,7 @@ class BorrowModalContent extends React.Component {
         this._setUpdatedPosition(newState);
     }
 
-    _maximizeCollateral() {
+    _maximizeCollateral(percentage) {
         let currentPosition = this.props
             ? this._getCurrentPosition(this.props)
             : {};
@@ -306,7 +306,7 @@ class BorrowModalContent extends React.Component {
 
         // make sure we don't go over the maximum available collateral balance, and also not negative
         let maximizedCollateral = Math.max(
-            Math.floor(backingAssetBalanceTyped + initialCollateralTyped - 10),
+            Math.floor((backingAssetBalanceTyped + initialCollateralTyped - 10) * percentage/100),
             0
         );
 
@@ -660,7 +660,7 @@ class BorrowModalContent extends React.Component {
                 collateral_ratio
                     .toString()
                     .split(".")[1]
-                    .substr(0, 2);
+                    .substr(0, 3);
         }
 
         if (
