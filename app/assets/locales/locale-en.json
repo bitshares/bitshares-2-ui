@@ -507,9 +507,10 @@
         "target_collateral_ratio": "Target Collateral Ratio",
         "target_collateral_ratio_explanation": "The corresponding order for a margin call will be just big enough, to bring the collateral ratio to the target collateral ratio",
         "target_collateral_ratio_short": "TCR",
-        "title": "%(asset_symbol)s Margin",
+        "title": "%(asset_symbol)s Margin Loan",
         "update": "Update",
-        "use_max": "Use Max"
+        "use_max": "Use Max",
+        "use_percentage": "%(percentage)s%"
     },
     "browser_notification_messages": {
         "money_received_body": "Sent you %(amount)s %(symbol)s",
