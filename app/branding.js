@@ -205,6 +205,17 @@ export function getMyMarketsQuotes() {
             "XBTSX.EOS",
             "XBTSX.BAT"
         ],
+        honestTokens: [
+            "HONEST.BTC",
+            "HONEST.USD",
+            "HONEST.CNY",
+            "HONEST.XAU",           
+            "HONEST.XAG",          
+            "HONEST.XRP",
+            "HONEST.XRP1",
+            "HONEST.ETH",
+            "HONEST.ETH1"
+        ],
         otherTokens: ["CVCOIN", "HERO", "OCT", "HERTZ", "YOYOW"]
     };
 
@@ -240,6 +251,15 @@ export function getFeaturedMarkets(quotes = []) {
         ["USD", "RUDEX.USDT"],
         ["USD", "RUDEX.WLS"],
         ["USD", "RUDEX.SMOKE"],
+        ["USD", "HONEST.BTC"],
+        ["USD", "HONEST.USD"],
+        ["USD", "HONEST.CNY"],
+        ["USD", "HONEST.XAU"],
+        ["USD", "HONEST.XAG"],
+        ["USD", "HONEST.XRP"],
+        ["USD", "HONEST.ETH"],
+        ["USD", "HONEST.XRP1"],
+        ["USD", "HONEST.ETH1"],
         ["CNY", "BTS"],
         ["CNY", "USD"],
         ["CNY", "YOYOW"],
@@ -260,6 +280,15 @@ export function getFeaturedMarkets(quotes = []) {
         ["CNY", "RUDEX.USDT"],
         ["CNY", "RUDEX.WLS"],
         ["CNY", "RUDEX.SMOKE"],
+        ["CNY", "HONEST.BTC"],
+        ["CNY", "HONEST.USD"],
+        ["CNY", "HONEST.CNY"],
+        ["CNY", "HONEST.XAU"],
+        ["CNY", "HONEST.XAG"],
+        ["CNY", "HONEST.XRP"],
+        ["CNY", "HONEST.ETH"],
+        ["CNY", "HONEST.XRP1"],
+        ["CNY", "HONEST.ETH1"],
         ["BTS", "PPY"],
         ["BTS", "RUBLE"],
         ["BTS", "HERO"],
@@ -271,6 +300,16 @@ export function getFeaturedMarkets(quotes = []) {
         ["BTS", "GDEX.EOS"],
         ["BTS", "GDEX.BTO"],
         ["BTS", "GDEX.USDT"],
+        ["BTS", "HONEST.BTC"],
+        ["BTS", "HONEST.USD"],
+        ["BTS", "HONEST.CNY"],
+        ["BTS", "HONEST.XAU"],
+        ["BTS", "HONEST.XAG"],
+        ["BTS", "HONEST.XRP"],
+        ["BTS", "HONEST.ETH"],
+        ["BTS", "HONEST.XRP1"],
+        ["BTS", "HONEST.ETH1"],
+        ["XBTSX.BTC", "HONEST.BTC"],
         ["RUDEX.USDT", "RUDEX.BTC"],
         ["RUDEX.USDT", "RUDEX.ETH"],
         ["RUDEX.USDT", "RUDEX.EOS"],
@@ -282,6 +321,7 @@ export function getFeaturedMarkets(quotes = []) {
         ["RUDEX.BTC", "RUDEX.STEEM"],
         ["RUDEX.BTC", "RUDEX.GOLOS"],
         ["RUDEX.BTC", "RUDEX.WLS"],
+        ["RUDEX.BTC", "HONEST.BTC"],
         ["RUDEX.BTC", "PPY"],
         ["RUBLE", "RUDEX.BTC"],
         ["RUBLE", "RUDEX.ETH"],
@@ -325,7 +365,7 @@ export function getAssetNamespaces() {
     if (_isTestnet()) {
         return [];
     }
-    return ["OPEN.", "RUDEX.", "GDEX.", "XBTSX.", "CITADEL."];
+    return ["OPEN.", "RUDEX.", "GDEX.", "XBTSX.", "HONEST.", "CITADEL."];
 }
 
 /**
