@@ -1,5 +1,5 @@
-Update your {debt} margin position by adjusting the debt and collateral levels.
+Borrow {debt} from blockchain, by locking up at least {mr} times the value in {collateral}, as collateral.   
 
-Collateral and debt levels can be adjusted in any way you desire, as long as your collateral ratio stays above the maintenance collateral ratio of {mr}.
+You need to add extra collateral or reduce the debt, before the collateral value drops under the maintenance ratio of {mr}, to not get margin called.
 
-[Read more.](dex/shorting) & [checkout the Explanation Wizard](/borrow)
+[Read more](dex/shorting) or check out the [Explanation Wizard](/borrow).
