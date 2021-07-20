@@ -566,6 +566,7 @@
         "buy_sell": "Order Form",
         "buysell_formatter": "{asset} {direction}",
         "call": "コール価格",
+        "call_limit": "コール制限",
         "cancel_order_select_all": "Select all orders",
         "cancel_selected_orders": "Cancel selected order(s)",
         "change": "変化",

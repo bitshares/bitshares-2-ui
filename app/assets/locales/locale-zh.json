@@ -566,6 +566,7 @@
         "buy_sell": "挂单形式",
         "buysell_formatter": "{direction} {asset}",
         "call": "强平触发价",
+        "call_limit": "强平触发价",
         "cancel_order_select_all": "选择所有挂单",
         "cancel_selected_orders": "撤销挂单(s)",
         "change": "24H涨跌",

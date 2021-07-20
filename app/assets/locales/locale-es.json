@@ -566,6 +566,7 @@
         "buy_sell": "Formulario de Pedido",
         "buysell_formatter": "{direction} {asset}",
         "call": "Precio de Rescate (Precio de la llamada)",
+        "call_limit": "Limite de llamada",
         "cancel_order_select_all": "Select all orders",
         "cancel_selected_orders": "Cancel selected order(s)",
         "change": "cambio",

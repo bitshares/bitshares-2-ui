@@ -429,7 +429,7 @@ export default class ExchangeHeader extends React.Component {
                                         quote={quoteAsset}
                                         base={baseAsset}
                                         market={marketID}
-                                        content="explorer.block.call_limit"
+                                        content="exchange.call_limit"
                                     />
                                 ) : null}
 

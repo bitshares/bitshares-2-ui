@@ -566,6 +566,7 @@
         "buy_sell": "Kaufen/Verkaufen",
         "buysell_formatter": "{Richtung} {Anlage}",
         "call": "Kaufpreis",
+        "call_limit": "Kauf-Limit",
         "cancel_order_select_all": "Select all orders",
         "cancel_selected_orders": "Cancel selected order(s)",
         "change": "Änderung",
