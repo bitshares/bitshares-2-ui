@@ -70,7 +70,7 @@ class MarketHistoryView extends React.Component {
                     }}
                     colSpan="5"
                 >
-                    <Translate content="account.no_orders" />
+                    <Translate content="account.no_trades" />
                 </td>
             </tr>
         );

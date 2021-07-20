@@ -254,7 +254,6 @@ class AssetActions {
         );
         let tr = WalletApi.new_transaction();
         let precision = utils.get_asset_precision(createObject.precision);
-
         big.config({DECIMAL_PLACES: createObject.precision});
         let max_supply = new big(createObject.max_supply)
             .times(precision)
@@ -262,11 +261,9 @@ class AssetActions {
         let max_market_fee = new big(createObject.max_market_fee || 0)
             .times(precision)
             .toString();
-
         let corePrecision = utils.get_asset_precision(
             ChainStore.getAsset(cer.base.asset_id).get("precision")
         );
-
         let operationJSON = {
             fee: {
                 amount: 0,
@@ -304,11 +301,9 @@ class AssetActions {
             is_prediction_market: is_prediction_market,
             extensions: null
         };
-
         if (isBitAsset) {
             operationJSON.bitasset_opts = bitasset_opts;
         }
-
         tr.add_type_operation("asset_create", operationJSON);
         return dispatch => {
             return WalletDb.process_transaction(tr, null, true)
@@ -556,6 +551,76 @@ class AssetActions {
                                     assets: assets,
                                     dynamic: results[0],
                                     bitasset_data: results[1],
+                                    loading: false
+                                });
+                                return assets && assets.length;
+                            }
+                        );
+                    })
+                    .catch(error => {
+                        console.log(
+                            "Error in AssetActions.getAssetList: ",
+                            error
+                        );
+                        dispatch({loading: false});
+                        delete inProgress[id];
+                    });
+
+                // Fetch next 10 assets for each gateAsset on request
+                if (includeGateways) {
+                    gatewayPrefixes.forEach(a => {
+                        this.getAssetList(a + "." + start, 10);
+                    });
+                }
+
+                return assets;
+            }
+        };
+    }
+
+    getAssetsByIssuer(issuer, count, start, includeGateways = false){
+        let id = issuer + "_" + count;
+        console.log("getAssetsByIssuer id = ", id);
+        return dispatch => {
+            if (!inProgress[id]) {
+                let assets;
+                inProgress[id] = true;
+                dispatch({loading: true});
+
+                assets = Apis.instance()
+                    .db_api()
+                    .exec("get_assets_by_issuer", [issuer, start, count])
+                    .then(assets => {
+                        let bitAssetIDS = [];
+                        let dynamicIDS = [];
+
+                        assets.forEach(asset => {
+                            ChainStore._updateObject(asset, false);
+                            dynamicIDS.push(asset.dynamic_asset_data_id);
+
+                            // if (asset.bitasset_data_id) {
+                            //     bitAssetIDS.push(asset.bitasset_data_id);
+                            // }
+                        });
+
+                        let dynamicPromise = Apis.instance()
+                            .db_api()
+                            .exec("get_objects", [dynamicIDS]);
+
+                        // let bitAssetPromise =
+                        //     bitAssetIDS.length > 0
+                        //         ? Apis.instance()
+                        //               .db_api()
+                        //               .exec("get_objects", [bitAssetIDS])
+                        //         : null;
+
+                        Promise.all([dynamicPromise]).then(
+                            results => {
+                                delete inProgress[id];
+                                dispatch({
+                                    assets: assets,
+                                    dynamic: results[0],
+                                    // bitasset_data: results[1],
                                     loading: false
                                 });
                                 return assets && assets.length;

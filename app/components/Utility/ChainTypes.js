@@ -123,6 +123,23 @@ function accountChecker(props, propName, componentName) {
     // assume all ok
     return null;
 }
+function liquidityPoolChecker(props, propName, componentName) {
+    componentName = componentName || "ANONYMOUS";
+    if (props[propName]) {
+        let value = props[propName];
+        if (typeof value === "string") {
+            return null;
+        } else if (typeof value === "object") {
+            // TODO: check object type
+        } else {
+            return new Error(
+                `${propName} in ${componentName} should be Immutable.List`
+            );
+        }
+    }
+    // assume all ok
+    return null;
+}
 
 function objectsListChecker(props, propName, componentName) {
     componentName = componentName || "ANONYMOUS";
@@ -145,6 +162,25 @@ function objectsListChecker(props, propName, componentName) {
 }
 
 function assetsListChecker(props, propName, componentName) {
+    componentName = componentName || "ANONYMOUS";
+    if (props[propName]) {
+        let value = props[propName];
+        if (
+            Immutable.List.isList(value) ||
+            Immutable.Set.isSet(value) ||
+            value instanceof Object
+        ) {
+            return null;
+        } else {
+            return new Error(
+                `${propName} in ${componentName} should be Immutable.List`
+            );
+        }
+    }
+    // assume all ok
+    return null;
+}
+function liquidityPoolsListChecker(props, propName, componentName) {
     componentName = componentName || "ANONYMOUS";
     if (props[propName]) {
         let value = props[propName];
@@ -206,9 +242,13 @@ let ChainAccountName = createChainableTypeChecker(accountNameChecker);
 let ChainKeyRefs = createChainableTypeChecker(keyChecker);
 let ChainAddressBalances = createChainableTypeChecker(keyChecker);
 let ChainAsset = createChainableTypeChecker(assetChecker);
+let ChainLiquidityPool = createChainableTypeChecker(liquidityPoolChecker);
 let ChainObjectsList = createChainableTypeChecker(objectsListChecker);
 let ChainAccountsList = createChainableTypeChecker(accountsListChecker);
 let ChainAssetsList = createChainableTypeChecker(assetsListChecker);
+let ChainLiquidityPoolsList = createChainableTypeChecker(
+    liquidityPoolsListChecker
+);
 
 export default {
     ChainObject,
@@ -217,7 +257,9 @@ export default {
     ChainKeyRefs,
     ChainAddressBalances,
     ChainAsset,
+    ChainLiquidityPool,
     ChainObjectsList,
     ChainAccountsList,
-    ChainAssetsList
+    ChainAssetsList,
+    ChainLiquidityPoolsList
 };

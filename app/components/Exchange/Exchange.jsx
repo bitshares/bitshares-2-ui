@@ -344,7 +344,7 @@ class Exchange extends React.Component {
             hideScrollbars: ws.get("hideScrollbars", false),
             singleColumnOrderForm: ws.get("singleColumnOrderForm", true),
             flipOrderBook: ws.get("flipOrderBook", false),
-            flipBuySell: ws.get("flipBuySell", false),
+            flipBuySell: ws.get("flipBuySell", true),
             orderBookReversed: ws.get("orderBookReversed", false),
             chartType: ws.get("chartType", "price_chart"),
             chartHeight: chart_height,

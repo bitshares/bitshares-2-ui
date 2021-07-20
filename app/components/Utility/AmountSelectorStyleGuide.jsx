@@ -11,7 +11,7 @@ class AmountSelector extends DecimalChecker {
     static propTypes = {
         label: PropTypes.string, // a translation key for the label
         assets: PropTypes.array,
-        amount: PropTypes.any,
+        amount: PropTypes.string,
         placeholder: PropTypes.string,
         onChange: PropTypes.func,
         tabIndex: PropTypes.number,
@@ -33,7 +33,7 @@ class AmountSelector extends DecimalChecker {
         // TODO: use asset's precision to format the number
         if (!v && typeof v !== "number") v = "";
         if (typeof v === "number") v = v.toString();
-        let value = v.trim().replace(/,/g, "");
+        let value = v.toString().trim().replace(/,/g, "");
 
         return value;
     }
@@ -116,6 +116,7 @@ class AmountSelector extends DecimalChecker {
             >
                 <Input.Group compact>
                     <Input
+                        type="number"
                         disabled={this.props.disabled}
                         value={value || ""}
                         style={{
@@ -125,7 +126,7 @@ class AmountSelector extends DecimalChecker {
                         onChange={this._onChange.bind(this)}
                         tabIndex={this.props.tabIndex}
                         onPaste={this.props.onPaste || this.onPaste.bind(this)}
-                        onKeyPress={this.onKeyPress.bind(this)}
+                        // onKeyPress={this.onKeyPress.bind(this)}
                         addonBefore={addonBefore}
                         className="input-group-unbordered-before"
                     />

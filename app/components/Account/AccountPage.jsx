@@ -13,6 +13,7 @@ import {Route, Switch, Redirect} from "react-router-dom";
 
 /* Nested routes */
 import AccountAssets from "./AccountAssets";
+import AccountPools from "./AccountPools";
 import {AccountAssetCreate} from "./AccountAssetCreate";
 import AccountAssetUpdate from "./AccountAssetUpdate";
 import AccountMembership from "./AccountMembership";
@@ -114,6 +115,11 @@ class AccountPage extends React.Component {
                     path={`/account/${account_name}/assets`}
                     exact
                     render={() => <AccountAssets {...passOnProps} />}
+                />
+                <Route
+                    path={`/account/${account_name}/pools`}
+                    exact
+                    render={() => <AccountPools {...passOnProps} />}
                 />
                 <Route
                     path={`/account/${account_name}/create-asset`}

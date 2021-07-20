@@ -43,6 +43,7 @@ const isAccountType = checkChainType(ChainTypes.ChainAccount);
 const isKeyRefsType = checkChainType(ChainTypes.ChainKeyRefs);
 const isAddressBalancesType = checkChainType(ChainTypes.ChainAddressBalances);
 const isAssetType = checkChainType(ChainTypes.ChainAsset);
+const isLiquidityPoolType = checkChainType(ChainTypes.ChainLiquidityPool);
 const isObjectsListType = checkChainType(ChainTypes.ChainObjectsList);
 const isAccountsListType = checkChainType(ChainTypes.ChainAccountsList);
 const isAssetsListType = checkChainType(ChainTypes.ChainAssetsList);
@@ -73,6 +74,7 @@ function BindToChainState(Component, options = {}) {
                 this.chain_key_refs = [];
                 this.chain_address_balances = [];
                 this.chain_assets = [];
+                this.chain_liquidity_pools = [];
                 this.chain_objects_list = [];
                 this.chain_accounts_list = [];
                 this.chain_assets_list = [];
@@ -127,6 +129,14 @@ function BindToChainState(Component, options = {}) {
                         )
                     )
                     .map(firstEl);
+                this.chain_liquidity_pools = prop_types_array
+                    .filter(
+                        flow(
+                            secondEl,
+                            isLiquidityPoolType
+                        )
+                    )
+                    .map(firstEl);
                 this.chain_objects_list = prop_types_array
                     .filter(
                         flow(
@@ -166,6 +176,7 @@ function BindToChainState(Component, options = {}) {
                     ...this.chain_key_refs,
                     ...this.chain_address_balances,
                     ...this.chain_assets,
+                    ...this.chain_liquidity_pools,
                     ...this.chain_objects_list
                 ];
             }
@@ -250,15 +261,15 @@ function BindToChainState(Component, options = {}) {
             this.update(next_props);
         }
 
-        update(next_props = null) {
+        async update(next_props = null) {
             try {
-                this._update(next_props);
+                await this._update(next_props);
             } catch (err) {
                 this._errored(err);
             }
         }
 
-        _update(next_props = null) {
+        async _update(next_props = null) {
             let props = next_props || this.props;
             let new_state = {};
             let all_objects_counter = 0;
@@ -436,7 +447,29 @@ function BindToChainState(Component, options = {}) {
                     if (this.state[key]) new_state[key] = null;
                 }
             }
-
+            /* Resolve List of Liquidity Pools By ShareAssets */
+            for (let key of this.chain_liquidity_pools) {
+                let prop =
+                    props[key] ||
+                    this.dynamic_props[key] ||
+                    this.default_props[key];
+                // console.log("-- Wrapper.update, chain_liquidity_pools -->", key, prop);
+                if (prop) {
+                    const pools = await ChainStore.getLiquidityPoolsByShareAsset(
+                        [prop],
+                        this.default_props["autosubscribe"]
+                    );
+                    if (pools.size > 0) {
+                        new_state[key] = pools.first();
+                        ++all_objects_counter;
+                        ++resolved_objects_counter;
+                    } else {
+                        new_state[key] = null;
+                    }
+                } else {
+                    if (this.state[key]) new_state[key] = null;
+                }
+            }
             /* Resolve lists of pure objects */
             for (let key of this.chain_objects_list) {
                 //console.log("-- Wrapper.update -->", this.chain_objects_list);
@@ -565,7 +598,7 @@ function BindToChainState(Component, options = {}) {
                     if (this.state[key]) new_state[key] = null;
                 }
             }
-
+            
             //console.log("----- Wrapper update ----->", this.all_chain_props, this.all_chain_props.length, all_objects_counter, resolved_objects_counter);
             if (all_objects_counter <= resolved_objects_counter)
                 new_state.resolved = true;
@@ -629,16 +662,16 @@ function BindToChainState(Component, options = {}) {
                         typeof options !== "undefined" &&
                         options.show_loader
                     ) {
-                        console.error(
-                            "Required prop " +
-                                prop +
-                                " isn't given, but still loading, this indicates that the rendering transitions are not well defined"
-                        );
+                        //console.error(
+                        //    "Required prop " +
+                        //        prop +
+                        //        " isn't given, but still loading, this indicates that the rendering transitions are not well defined"
+                        //);
                         return (
                             <React.Fragment>
                                 <LoadingIndicator />
                                 <span className="text-center">
-                                    Component re-rendering ...
+                                    Loading ...
                                 </span>
                             </React.Fragment>
                         );

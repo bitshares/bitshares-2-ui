@@ -78,7 +78,7 @@ div.account-creation {
         margin: 0 auto 15px;
         margin-top: 3px;
         text-transform: uppercase;
-        font-size: 0.875rem;
+        font-size: 0.9rem;
         width: 40%;
         color: #fff;
         display: flex;
@@ -133,4 +133,7 @@ div.account-creation {
             max-width: 35rem;
         }
     }
+}
+.d-flex {
+    display: flex;
 }

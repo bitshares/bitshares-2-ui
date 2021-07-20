@@ -5,6 +5,7 @@ import FeesContainer from "../Blockchain/FeesContainer";
 import BlocksContainer from "./BlocksContainer";
 import AssetsContainer from "./AssetsContainer";
 import AccountsContainer from "./AccountsContainer";
+import LiquidityPools from "./LiquidityPools";
 import counterpart from "counterpart";
 import MarketsContainer from "../Exchange/MarketsContainer";
 import {Tabs} from "bitshares-ui-style-guide";
@@ -26,6 +27,12 @@ class Explorer extends React.Component {
                     link: "/explorer/assets",
                     translate: "explorer.assets.title",
                     content: AssetsContainer
+                },
+                {
+                    name: "pools",
+                    link: "/explorer/pools",
+                    translate: "poolmart.liquidity_pools.title",
+                    content: LiquidityPools
                 },
                 {
                     name: "accounts",

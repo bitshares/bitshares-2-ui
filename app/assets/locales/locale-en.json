@@ -137,6 +137,7 @@
         "new_user": "New user?",
         "no_order_history": "No order history",
         "no_orders": "No open orders",
+        "no_trades": "No last trades",
         "no_price": "--",
         "open_orders": "Open Orders",
         "optional": {
@@ -342,6 +343,30 @@
             "visible": "Hide asset from search and markets",
             "white_list": "Require holders to be white-listed",
             "witness_fed_asset": "Allow witnesses to provide feeds"
+        },
+        "liquidity_pools": {
+            "asset_a": "Asset A",
+            "asset_a_balance": "Asset A Balance",
+            "asset_b": "Asset B",
+            "asset_b_balance": "Asset B Balance",
+            "create_pool": "Create Pool",
+            "delete": "Delete",
+            "liquidity_pools": "Liquidity Pools",
+            "pool_name": "Pool Name",
+            "pool_balance": "Pool Balance",
+            "stake_status": "Stake/Unstake",
+            "title": "Pools",
+            "taker_fee": "Taker Fee",
+	    "unstake_fee": "Unstake Fee",
+            "alert_asset_a": "ID of ASSET A should be greater than ID of ASSET B",
+            "alert_asset_b": "ID of ASSET B should be smaller than ID of ASSET A",
+            "alert_taker_fee": "",
+            "alert_unstack_fee": "",
+            "alert_request_input_pool": "Please select pool",
+            "alert_request_input_asset_a": "Please select ASSET A",
+            "alert_request_input_asset_b": "Please select ASSET B",
+            "alert_request_input_taker_fee": "Please input taker fee",
+            "alert_request_input_unstack_fee": "Please input unstacke fee"
         },
         "vesting": {
             "balance_number": "Balance #%(id)s",
@@ -1330,6 +1355,7 @@
         "logout": "Logout",
         "payments": "Send",
         "payments_legacy": "or Legacy Send",
+        "poolmart": "Poolmart",
         "settings": "Settings",
         "showcases": "Spotlight",
         "title": "%(wallet_name)s UI",
@@ -1429,6 +1455,9 @@
             "add_contact": "Add contact to the list",
             "show_asset": "Show asset",
             "show_market": "Show market"
+        },
+        "poolmart": {
+            "title": "Poolmart"
         },
         "power": "Login",
         "question_circle": "Help",
@@ -1818,6 +1847,29 @@
     "pagination": {
         "newer": "Newer",
         "older": "Older"
+    },
+    "poolmart": {
+        "liquidity_pools": {
+            "amount_to_sell": "Amount to sell",
+            "asset_a": "Asset A",
+            "asset_b": "Asset B",
+            "asset_a_qty": "Asset A QTY",
+            "asset_b_qty": "Asset B QTY",
+            "exchange": "Exchange",
+            "min_to_receive": "Min to receive",
+            "need_stake_first": "Need Stake The Pool First!",
+            "pool_id": "Pool Id",
+            "share_asset": "Share Asset",
+            "stake_unstake": "Stake/Unstake",
+            "taker_fee_percent": "Taker Fee",
+            "taker_fee_percent_rate": "Taker Fee Rate",
+            "title": "Pools",
+            "withdrawal_fee_percent": "Withdrawal Fee",
+            "stake": "Stake",
+            "unstake": "Unstake",
+	    "delete_pool": "Delete",
+            "confirm_delete_pool": "Are you sure you want to delete the pool?"
+        }
     },
     "prediction": {
         "add_opinion_modal": {

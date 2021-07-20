@@ -846,6 +846,231 @@ const ApplicationApi = {
             },
             extensions: {}
         });
+                   transactionBuilder.add_operation(op);
+        await WalletDb.process_transaction(transactionBuilder, null, broadcast);
+        if (!transactionBuilder.tr_buffer) {
+            throw "Something went finalization the transaction, this should not happen";
+        }
+    },
+
+    async liquidityPoolCreate(
+        account,
+        assetA,
+        assetB,
+        shareAsset,
+        takerFeePercent,
+        withdrawalFeePercent,
+        feeAsset = "1.3.0",
+        broadcast = true
+    ) {
+        // account must be unlocked
+        await WalletUnlockActions.unlock();
+
+        // ensure all arguments are chain objects
+        let objects = {
+            account: await this._ensureAccount(account),
+            assetA: await this._ensureAsset(assetA),
+            assetB: await this._ensureAsset(assetB),
+            shareAsset: await this._ensureAsset(shareAsset),
+            feeAsset: await this._ensureAsset(feeAsset)
+        };
+
+        let transactionBuilder = new TransactionBuilder();
+        let op = transactionBuilder.get_type_operation(
+            "liquidity_pool_create",
+            {
+                fee: {
+                    amount: 0,
+                    asset_id: objects.feeAsset.get("id")
+                },
+                account: objects.account.get("id"),
+                asset_a: objects.assetA.get("id"),
+                asset_b: objects.assetB.get("id"),
+                share_asset: objects.shareAsset.get("id"),
+                taker_fee_percent: takerFeePercent,
+                withdrawal_fee_percent: withdrawalFeePercent,
+                extensions: {}
+            }
+        );
+
+        transactionBuilder.add_operation(op);
+        await WalletDb.process_transaction(transactionBuilder, null, broadcast);
+        if (!transactionBuilder.tr_buffer) {
+            throw "Something went finalization the transaction, this should not happen";
+        }
+    },
+
+    async liquidityPoolDelete(
+        account,
+        liquidityPoolId,
+        feeAsset = "1.3.0",
+        broadcast = true
+    ) {
+        // account must be unlocked
+        await WalletUnlockActions.unlock();
+
+        // ensure all arguments are chain objects
+        let objects = {
+            account: await this._ensureAccount(account),
+            feeAsset: await this._ensureAsset(feeAsset)
+        };
+
+        let transactionBuilder = new TransactionBuilder();
+        let op = transactionBuilder.get_type_operation(
+            "liquidity_pool_delete",
+            {
+                fee: {
+                    amount: 0,
+                    asset_id: objects.feeAsset.get("id")
+                },
+                account: objects.account.get("id"),
+                pool: liquidityPoolId,
+                extensions: {}
+            }
+        );
+
+        transactionBuilder.add_operation(op);
+        await WalletDb.process_transaction(transactionBuilder, null, broadcast);
+        if (!transactionBuilder.tr_buffer) {
+            throw "Something went finalization the transaction, this should not happen";
+        }
+    },
+
+    async liquidityPoolDeposit(
+        account,
+        liquidityPoolId,
+        assetA,
+        assetB,
+        amountA,
+        amountB,
+        feeAsset = "1.3.0",
+        broadcast = true
+    ) {
+        // account must be unlocked
+        await WalletUnlockActions.unlock();
+
+        // ensure all arguments are chain objects
+        let objects = {
+            account: await this._ensureAccount(account),
+            assetA: await this._ensureAsset(assetA),
+            assetB: await this._ensureAsset(assetB),
+            feeAsset: await this._ensureAsset(feeAsset)
+        };
+
+        let transactionBuilder = new TransactionBuilder();
+        let op = transactionBuilder.get_type_operation(
+            "liquidity_pool_deposit",
+            {
+                fee: {
+                    amount: 0,
+                    asset_id: objects.feeAsset.get("id")
+                },
+                account: objects.account.get("id"),
+                pool: liquidityPoolId,
+                amount_a: {
+                    amount: amountA,
+                    asset_id: objects.assetA.get("id")
+                },
+                amount_b: {
+                    amount: amountB,
+                    asset_id: objects.assetB.get("id")
+                },
+                extensions: {}
+            }
+        );
+
+        transactionBuilder.add_operation(op);
+        await WalletDb.process_transaction(transactionBuilder, null, broadcast);
+        if (!transactionBuilder.tr_buffer) {
+            throw "Something went finalization the transaction, this should not happen";
+        }
+    },
+
+    async liquidityPoolWithdraw(
+        account,
+        liquidityPoolId,
+        shareAsset,
+        shareAmount,
+        feeAsset = "1.3.0",
+        broadcast = true
+    ) {
+        // account must be unlocked
+        await WalletUnlockActions.unlock();
+
+        // ensure all arguments are chain objects
+        let objects = {
+            account: await this._ensureAccount(account),
+            shareAsset: await this._ensureAsset(shareAsset),
+            feeAsset: await this._ensureAsset(feeAsset)
+        };
+
+        let transactionBuilder = new TransactionBuilder();
+        let op = transactionBuilder.get_type_operation(
+            "liquidity_pool_withdraw",
+            {
+                fee: {
+                    amount: 0,
+                    asset_id: objects.feeAsset.get("id")
+                },
+                account: objects.account.get("id"),
+                pool: liquidityPoolId,
+                share_amount: {
+                    amount: shareAmount,
+                    asset_id: objects.shareAsset.get("id")
+                },
+                extensions: {}
+            }
+        );
+
+        transactionBuilder.add_operation(op);
+        await WalletDb.process_transaction(transactionBuilder, null, broadcast);
+        if (!transactionBuilder.tr_buffer) {
+            throw "Something went finalization the transaction, this should not happen";
+        }
+    },
+
+    async liquidityPoolExchange(
+        account,
+        liquidityPoolId,
+        saleAsset,
+        amountToSell,
+        receiveAsset,
+        minToReceive,
+        feeAsset = "1.3.0",
+        broadcast = true
+    ) {
+        // account must be unlocked
+        await WalletUnlockActions.unlock();
+
+        // ensure all arguments are chain objects
+        let objects = {
+            account: await this._ensureAccount(account),
+            saleAsset: await this._ensureAsset(saleAsset),
+            receiveAsset: await this._ensureAsset(receiveAsset),
+            feeAsset: await this._ensureAsset(feeAsset)
+        };
+
+        let transactionBuilder = new TransactionBuilder();
+        let op = transactionBuilder.get_type_operation(
+            "liquidity_pool_exchange",
+            {
+                fee: {
+                    amount: 0,
+                    asset_id: objects.feeAsset.get("id")
+                },
+                account: objects.account.get("id"),
+                pool: liquidityPoolId,
+                amount_to_sell: {
+                    amount: amountToSell,
+                    asset_id: objects.saleAsset.get("id")
+                },
+                min_to_receive: {
+                    amount: minToReceive,
+                    asset_id: objects.receiveAsset.get("id")
+                },
+                extensions: {}
+            }
+        );
 
         transactionBuilder.add_operation(op);
         await WalletDb.process_transaction(transactionBuilder, null, broadcast);

@@ -1,7 +1,6 @@
 import alt from "alt-instance";
 import accountUtils from "common/account_utils";
 import AccountApi from "api/accountApi";
-
 import WalletApi from "api/WalletApi";
 import ApplicationApi from "api/ApplicationApi";
 import WalletDb from "stores/WalletDb";

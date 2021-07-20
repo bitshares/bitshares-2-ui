@@ -17,9 +17,7 @@ class MenuDataStructure {
             showAccountLinks,
             tradeUrl,
             enableDepositWithdraw,
-
             passwordLogin,
-
             currentAccount,
             createAccountLink
         }
@@ -98,6 +96,7 @@ class MenuDataStructure {
             let submenu = [
                 allItems.account_voting,
                 allItems.account_assets,
+                allItems.account_pools,
                 allItems.account_signedmessages,
                 allItems.account_stats,
                 allItems.account_vesting,
@@ -115,6 +114,7 @@ class MenuDataStructure {
             allItems.divider,
             allItems.dashboard,
             allItems.market,
+            allItems.poolmart,
             allItems.explorer,
             allItems.divider,
             allItems.transfer,
@@ -209,6 +209,15 @@ class MenuDataStructure {
                     title: "icons.trade.exchange"
                 },
                 text: "header.exchange",
+                inHeaderBehavior: MenuItemType.Always,
+                inDropdownBehavior: MenuItemType.WhenNotInHeader
+            }),
+            poolmart: state => ({
+                includePattern: "/poolmart/",
+                //target: state.poolmartUrl,
+                target: "/poolmart/liquidity-pools",
+                icon: {name: "poolmart", title: "icons.poolmart.title"},
+                text: "header.poolmart",
                 inHeaderBehavior: MenuItemType.Always,
                 inDropdownBehavior: MenuItemType.WhenNotInHeader
             }),
@@ -362,6 +371,15 @@ class MenuDataStructure {
                 target: `/account/${state.currentAccount}/assets`,
                 icon: "assets",
                 text: "explorer.assets.title",
+                inHeaderBehavior: MenuItemType.Dynamic,
+                inDropdownBehavior: MenuItemType.WhenAccount
+            }),
+            account_pools: state => ({
+                includePattern: "/pools",
+                excludePattern: "explorer",
+                target: `/account/${state.currentAccount}/pools`,
+                icon: "pools",
+                text: "account.liquidity_pools.title",
                 inHeaderBehavior: MenuItemType.Dynamic,
                 inDropdownBehavior: MenuItemType.WhenAccount
             }),

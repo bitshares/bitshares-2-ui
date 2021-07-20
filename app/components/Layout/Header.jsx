@@ -476,13 +476,13 @@ class Header extends React.Component {
 
         let hamburger = this.state.dropdownActive ? (
             <Icon
-                className="icon-14px"
+                className="icon-18px"
                 name="hamburger-x"
                 title="icons.hamburger_x"
             />
         ) : (
             <Icon
-                className="icon-14px"
+                className="icon-18px"
                 name="hamburger"
                 title="icons.hamburger"
             />
@@ -494,7 +494,6 @@ class Header extends React.Component {
         let renderingProps = {
             currentAccount: currentAccount,
             tradeUrl: tradeUrl,
-
             createAccountLink: createAccountLink
         };
 
@@ -546,7 +545,7 @@ class Header extends React.Component {
                                                 )}
                                                 className="button outline small"
                                             >
-                                                >
+                                                {">"}
                                             </div>
                                         </div>
                                     </li>
